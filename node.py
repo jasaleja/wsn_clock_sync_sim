@@ -12,11 +12,11 @@ class Node(Clock):
         self.active = True
         self.confidence = 0
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
     
-    def __str__(self):
-        return f"Node \033[31m{self.id}\033[39m at coordinates {self.position} with {self.range}."
+    def __str__(self) -> str:
+        return f"Node \033[31m{self.id}\033[39m at coordinates {self.position} with range {self.range}.\n"
     
     def move_to(self, new_position: tuple[int, int]) -> None:
         self.position = new_position
@@ -25,13 +25,13 @@ class Node(Clock):
         if (self.active == True):
             self.active = False
         else:
-            print(f"Node \033[31m{self.id}\033[39m is already off.")
+            print(f"Node \033[31m{self.id}\033[39m is already off.\n")
 
     def turn_on(self) -> None:
         if (self.active == False):
             self.active = True
         else:
-            print(f"Node \033[31m{self.id}\033[39m is already on.")
+            print(f"Node \033[31m{self.id}\033[39m is already on.\n")
 
     def in_range_off(self, position: tuple[float, float]) -> bool:
         x,y = position
