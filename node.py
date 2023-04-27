@@ -10,7 +10,7 @@ class Node(Clock):
         self.position = position
         self.range = range
         self.active = True
-        self.confidence = 0
+        self.confidence = 1
 
     def __repr__(self) -> str:
         return self.__str__()
