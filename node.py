@@ -1,34 +1,49 @@
+from math import sqrt
 from uuid import uuid1
 from clock import Clock
 
 
 class Node(Clock):
-    def __init__(self, position: tuple[float, float], range: float) -> None:
+    def __init__(self, position: tuple[int, int], range: float) -> None:
         self.id = uuid1()
         Clock.__init__(self)
-        self.x, self.y = position
+        self.position = position
         self.range = range
         self.active = True
         self.confidence = 0
 
-    def moveTo(self, newPosition: tuple[float, float]) -> None:
-        self.x, self.y = newPosition
+    def __repr__(self):
+        return self.__str__()
+    
+    def __str__(self):
+        return f"Node \033[31m{self.id}\033[39m at coordinates {self.position} with {self.range}."
+    
+    def move_to(self, new_position: tuple[int, int]) -> None:
+        self.position = new_position
 
-    def turnOff(self) -> None:
+    def turn_off(self) -> None:
         if (self.active == True):
             self.active = False
         else:
             print(f"Node \033[31m{self.id}\033[39m is already off.")
 
-    def turnOn(self) -> None:
+    def turn_on(self) -> None:
         if (self.active == False):
             self.active = True
         else:
             print(f"Node \033[31m{self.id}\033[39m is already on.")
 
+    def in_range_off(self, position: tuple[float, float]) -> bool:
+        x,y = position
+        distance = sqrt((self.position[0] - x)**2 + (self.position[1]-y)**2)
+        if distance < self.range:
+            return True
+        else:
+            return False
+
             
 if __name__ == "__main__":
     exampleNode = Node((0,0), 1)
-    exampleNode.turnOn()
+    exampleNode.turn_on()
     exampleNode2 = Node((1,1), 1)
-    print(exampleNode2.id)
+    print(exampleNode2)
