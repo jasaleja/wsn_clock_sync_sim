@@ -16,7 +16,7 @@ class Node(Clock):
         return self.__str__()
     
     def __str__(self) -> str:
-        return f"Node \033[31m{self.id}\033[39m at coordinates {self.position} with range {self.range}.\n"
+        return f"Node \033[31m{self.id}\033[39m at coordinates {self.position} with time {self.time}.\n"
     
     def move_to(self, new_position: tuple[int, int]) -> None:
         self.position = new_position
@@ -33,7 +33,7 @@ class Node(Clock):
         else:
             print(f"Node \033[31m{self.id}\033[39m is already on.\n")
 
-    def in_range_off(self, position: tuple[float, float]) -> bool:
+    def in_range(self, position: tuple[float, float]) -> bool:
         x,y = position
         distance = sqrt((self.position[0] - x)**2 + (self.position[1]-y)**2)
         if distance < self.range:
@@ -43,6 +43,7 @@ class Node(Clock):
 
             
 if __name__ == "__main__":
+    #Test code for current class
     exampleNode = Node((0,0), 1)
     exampleNode.turn_on()
     exampleNode2 = Node((1,1), 1)
