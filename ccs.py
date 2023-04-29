@@ -6,7 +6,7 @@ def consensus_clock_synchronization(simulation: WirelessSensorNetwork) -> None:
         node.confidence = 1
     for sending_node in simulation.network:
         for receiving_node in simulation.network:
-            if ((sending_node.in_range(receiving_node.position) == True) and (sending_node.id != receiving_node.id)):
+            if (sending_node.in_range(receiving_node.position, receiving_node.id) == True):
                 _offset_compensation(sending_node, receiving_node)
 
 def _offset_compensation(sender:Node, receiver: Node):
