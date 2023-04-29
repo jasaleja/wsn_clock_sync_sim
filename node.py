@@ -33,13 +33,16 @@ class Node(Clock):
         else:
             print(f"Node \033[31m{self.id}\033[39m is already on.\n")
 
-    def in_range(self, position: tuple[float, float]) -> bool:
-        x,y = position
-        distance = sqrt((self.position[0] - x)**2 + (self.position[1]-y)**2)
-        if distance < self.range:
-            return True
-        else:
+    def in_range(self, receiver_position: tuple[float, float], receiver_id: str) -> bool:
+        if (self.id == receiver_id):
             return False
+        else:
+            x,y = receiver_position
+            distance = sqrt((self.position[0] - x)**2 + (self.position[1]-y)**2)
+            if distance < self.range:
+                return True
+            else:
+                return False
 
             
 if __name__ == "__main__":
