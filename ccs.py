@@ -19,12 +19,14 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
             self.parameters[node.id][1] = 1
         # All nodes send synchronization messages in random order
         shuffle(simulation.network)
-        for sending_node in simulation.network:
-            for receiving_node in simulation.network:
-                if sending_node.in_range(receiving_node.position, receiving_node.id) is True:
-                    old_time = receiving_node.time
-                    self._offset_compensation(sending_node, receiving_node)
-                    self._skew_compensation(receiving_node, old_time)
+        for sender_node in simulation.network:
+            if sender_node.active is True:
+                for receiver_node in simulation.network:
+                    if receiver_node.active is True:
+                        if sender_node.in_range(receiver_node.position, receiver_node.id) is True:
+                            old_time = receiver_node.time
+                            self._offset_compensation(sender_node, receiver_node)
+                            self._skew_compensation(receiver_node, old_time)
         for node in simulation.network:
             # Store current time for furute skew compensation
             self.parameters[node.id][0] = node.time
