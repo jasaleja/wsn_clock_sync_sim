@@ -1,4 +1,5 @@
 """Mode for class ConsensusClockSynchronization."""
+from random import shuffle
 from wsn import WirelessSensorNetwork
 from node import Node
 
@@ -16,7 +17,8 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
         # Reset all confidence factors
         for node in simulation.network:
             self.parameters[node.id][1] = 1
-        # All nodes send synchronization messages
+        # All nodes send synchronization messages in random order
+        shuffle(simulation.network)
         for sending_node in simulation.network:
             for receiving_node in simulation.network:
                 if sending_node.in_range(receiving_node.position, receiving_node.id) is True:
