@@ -45,6 +45,7 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
         receiver.compensation_skew = receiver.compensation_skew * time_difference
 
 if __name__ == "__main__":
+    # Test code for class WirelessSensorNetwork
     test = WirelessSensorNetwork((2, 2), 4)
     ccs = ConsensusClockSynchronization(test)
     test.network[0].time = 1
