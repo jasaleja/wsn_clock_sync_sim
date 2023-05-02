@@ -15,9 +15,9 @@ class Clock:
     def __str__(self) -> str:
         return f"{self.time}"
 
-    def pass_time(self, passed_seconds: int) -> float:
-        """Advance the clock by the amount of passed seconds."""
-        self.time = (self.natural_skew/self.compensation_skew) * passed_seconds + self.time
+    def pass_time(self, passed_ticks: int) -> float:
+        """Advance the clock by the amount of passed ticks."""
+        self.time = (self.natural_skew/self.compensation_skew) * passed_ticks + self.time
         return self.time
 
     def scramble_time(self, skew: float, offset: float) -> None:
