@@ -1,4 +1,4 @@
-"""Mode for class Node."""
+"""Module for class Node."""
 from math import sqrt
 from uuid import uuid1
 from clock import Clock
