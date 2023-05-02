@@ -1,12 +1,14 @@
 from matplotlib import pyplot
 from wsn import WirelessSensorNetwork
-from ccs import ConsensusClockSynchronization
+from ccs import initialise_ccs
+from ccs import concensus_clock_synhronization
 
 if __name__ == "__main__":
+    #topology, size, trasmission_range, natural_skew, initial_offset = input_setup("test.txt")
     simulation = WirelessSensorNetwork((10,10), 100, 3)
     system_time = 0
     #simulation = WirelessSensorNetwork((2,2), 4)
-    ccs = ConsensusClockSynchronization(simulation)
+    initialise_ccs(simulation)
 
     simulation.init_clocks()
     print(f"Mean internal error {simulation.mean_internal_error()}, \
@@ -26,8 +28,9 @@ if __name__ == "__main__":
     #     system_time += 1
     #     if (system_time == 100):
     #         break
-    ccs.synchronize(simulation)
+    concensus_clock_synhronization(simulation)
     print(f"Mean internal error {simulation.mean_internal_error()}, \
           average time {simulation.average_time()}")
     for node in simulation.network:
         print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time}")
+                
