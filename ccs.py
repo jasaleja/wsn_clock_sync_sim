@@ -56,7 +56,7 @@ def _skew_compensation(receiver: Node, old_time: float) -> None:
     receiver.compensation_skew = receiver.compensation_skew * time_difference
 
 if __name__ == "__main__":
-    # Test code for class WirelessSensorNetwork
+    # Test code for module ccs
     test = WirelessSensorNetwork((2, 2), 4, 3)
     initialise_ccs(test)
     test.network[0].time = 1
