@@ -50,7 +50,7 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
 
 if __name__ == "__main__":
     # Test code for class WirelessSensorNetwork
-    test = WirelessSensorNetwork((2, 2), 4)
+    test = WirelessSensorNetwork((2, 2), 4, 3)
     ccs = ConsensusClockSynchronization(test)
     test.network[0].time = 1
     test.network[1].time = 2
