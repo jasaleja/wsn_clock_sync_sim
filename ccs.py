@@ -10,13 +10,13 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
         self.parameters = {}
         for node in simulation.network:
             # Set initial synchronization time [0] and confidence factor [1]
-            self.parameters[node.id] = [node.time, 1]
+            self.parameters[node.uid] = [node.time, 1]
 
     def synchronize(self, simulation: WirelessSensorNetwork) -> None:
         """Perform the consensus clock synhronization algorithm on the simulation."""
         # Reset all confidence factors
         for node in simulation.network:
-            self.parameters[node.id][1] = 1
+            self.parameters[node.uid][1] = 1
         # All nodes send synchronization messages in random order
         shuffle(simulation.network)
         for sender_node in simulation.network:
@@ -29,20 +29,20 @@ class ConsensusClockSynchronization(): # pylint: disable=too-few-public-methods
                             self._skew_compensation(receiver_node, old_time)
         for node in simulation.network:
             # Store current time for furute skew compensation
-            self.parameters[node.id][0] = node.time
+            self.parameters[node.uid][0] = node.time
 
 
     def _offset_compensation(self, sender:Node, receiver: Node) -> None:
-        sender_confidence = self.parameters[sender.id][1]
-        receiver_confidence = self.parameters[receiver.id][1]
+        sender_confidence = self.parameters[sender.uid][1]
+        receiver_confidence = self.parameters[receiver.uid][1]
         confidence_factor = sender_confidence / (receiver_confidence + sender_confidence)
         # CCS formula (9)
         receiver.time = receiver.time + confidence_factor * (sender.time - receiver.time)
         # Increase confidence factor of receiver
-        self.parameters[receiver.id][1] += 1
+        self.parameters[receiver.uid][1] += 1
 
     def _skew_compensation(self, receiver: Node, old_time: float) -> None:
-        last_synchronization = self.parameters[receiver.id][0]
+        last_synchronization = self.parameters[receiver.uid][0]
         new_time = receiver.time
         time_difference = (old_time - last_synchronization)/(new_time - last_synchronization)
         # CCS formula (16)
