@@ -1,10 +1,14 @@
-"""Module for class WirelessSensorNetwork."""
+"""
+Module for class WirelessSensorNetwork.
+"""
 from random import randint
 from node import Node
 
 class WirelessSensorNetwork:
-    """Class for simulating wireless sensor networks and providing methods
-    for various setups and calculations inside the network."""
+    """
+    Class for simulating wireless sensor networks and providing methods
+    for various setups and calculations inside the network.
+    """
     def __init__(self, size: tuple[int, int], node_amount: int, trasmission_range: int) -> None:
         self.size = size
         self.node_amount = node_amount
@@ -28,17 +32,23 @@ class WirelessSensorNetwork:
         return list(positions)
 
     def init_clocks(self) -> None:
-        """Initialise the clock of all nodes according to set random parameters."""
+        """
+        Initialise the clock of all nodes according to set random parameters.
+        """
         for node in self.network:
             node.scramble_time(randint(-100,100)/10000, randint(-1500,1500))
 
     def pass_time(self, passed_ticks) -> None:
-        """Advance the clock of all nodes by the amount of passed ticks."""
+        """
+        Advance the clock of all nodes by the amount of passed ticks.
+        """
         for node in self.network:
             node.pass_time(passed_ticks)
 
     def draw_network(self) -> None:
-        """Draw the network rectangle in the console. * for empty, N for node."""
+        """
+        Draw the network rectangle in the console. * for empty, N for node.
+        """
         network_canvas = [['*' for i in range(self.size[0])] for j in range(self.size[0])]
         for node in self.network:
             network_canvas[node.position[1]][node.position[0]] = 'N'
@@ -46,7 +56,9 @@ class WirelessSensorNetwork:
             print(row)
 
     def average_time(self) -> float:
-        """Calculate average time in the network."""
+        """
+        Calculate average time in the network.
+        """
         time_sum = 0
         for node in self.network:
             time_sum += node.time
@@ -54,7 +66,9 @@ class WirelessSensorNetwork:
         return average_network_time
 
     def mean_internal_error(self) -> float:
-        """Calculate the average error of all nodes in comparison to average time."""
+        """
+        Calculate the average error of all nodes in comparison to average time.
+        """
         average_network_time = self.average_time()
         error_sum = 0
         for node in self.network:
