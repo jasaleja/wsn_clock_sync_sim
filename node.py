@@ -1,10 +1,14 @@
-"""Module for class Node."""
+"""
+Module for class Node.
+"""
 from math import sqrt
 from uuid import uuid1
 from clock import Clock
 
 class Node(Clock):
-    """Class for representation of a node inside a network that has an internal clock."""
+    """
+    Class for representation of a node inside a network that has an internal clock.
+    """
     def __init__(self, position: tuple[int, int], transmission_range: float) -> None:
         self.uid = uuid1()
         Clock.__init__(self)
@@ -19,25 +23,33 @@ class Node(Clock):
         return f"Node \033[31m{self.uid}\033[39m at coordinates {self.position}.\n"
 
     def move_to(self, new_position: tuple[int, int]) -> None:
-        """Move the node to another position."""
+        """
+        Move the node to another position.
+        """
         self.position = new_position
 
     def turn_off(self) -> None:
-        "Disable the node."
+        """
+        Disable the node.
+        """
         if self.active is True:
             self.active = False
         else:
             print(f"Node \033[31m{self.uid}\033[39m is already off.\n")
 
     def turn_on(self) -> None:
-        """Activate the node."""
+        """
+        Activate the node.
+        """
         if self.active is False:
             self.active = True
         else:
             print(f"Node \033[31m{self.uid}\033[39m is already on.\n")
 
     def in_range(self, receiver_position: tuple[float, float], receiver_uid: str) -> bool:
-        """Check if receiver node is in trasmission range of the sender node."""
+        """
+        Check if receiver node is in trasmission range of the sender node.
+        """
         # Check if node is not itself
         if self.uid != receiver_uid:
             x_position, y_position = receiver_position
