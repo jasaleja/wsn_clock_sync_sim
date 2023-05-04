@@ -6,10 +6,10 @@ class Clock:
     """
     Class for mathematical representation of a clock.
     """
-    def __init__(self, offset: float = 0, skew:float = 1) -> None:
-        self.time = offset
+    def __init__(self, natural_skew:float = 1, initial_offset: float = 0, ) -> None:
+        self.time = initial_offset
         # Unknow to the user and should not be edited once set
-        self.natural_skew = skew
+        self.natural_skew = natural_skew
         # Known to the user
         self.compensation_skew = 1
 
