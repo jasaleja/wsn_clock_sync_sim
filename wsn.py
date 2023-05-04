@@ -9,13 +9,24 @@ class WirelessSensorNetwork:
     Class for simulating wireless sensor networks and providing methods
     for various setups and calculations inside the network.
     """
-    def __init__(self, size: tuple[int, int], node_amount: int, trasmission_range: int) -> None:
-        self.size = size
-        self.node_amount = node_amount
-        node_positions = self._generate_positions()
-        self.network = []
-        for position in node_positions:
-            self.network.append(Node(position, trasmission_range))
+    def __init__(self, input_data: dict) -> None:
+        match input_data['topology']:
+            case 'random':
+                self.size = input_data['size']
+                self.node_amount = input_data['node_amount']
+                node_positions = self._generate_positions()
+                self.network = []
+                for position in node_positions:
+                    self.network.append(Node(position,
+                                             input_data['transmission_range'],
+                                             input_data['natural_skew'],
+                                             input_data['initial_offset']))
+            case 'full':
+                pass
+            case 'chessboard':
+                pass
+            case _:
+                pass
 
     def __repr__(self) -> str:
         return self.__str__()
@@ -30,13 +41,6 @@ class WirelessSensorNetwork:
             y_position = randint(0, self.size[1]-1)
             positions.add((x_position, y_position))
         return list(positions)
-
-    def init_clocks(self) -> None:
-        """
-        Initialise the clock of all nodes according to set random parameters.
-        """
-        for node in self.network:
-            node.scramble_time(randint(-100,100)/10000, randint(-1500,1500))
 
     def pass_time(self, passed_ticks) -> None:
         """
