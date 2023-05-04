@@ -1,17 +1,24 @@
 """
 Module for class Node.
 """
-from math import sqrt
+from random import uniform
+from random import randint
 from uuid import uuid1
+from math import sqrt
 from clock import Clock
 
 class Node(Clock):
     """
     Class for representation of a node inside a network that has an internal clock.
     """
-    def __init__(self, position: tuple[int, int], transmission_range: float) -> None:
+    def __init__(self,
+                 position: tuple[int, int],
+                 transmission_range: float,
+                 natural_skew: float,
+                 initial_offset: int) -> None:
+        super().__init__(1 - uniform(-natural_skew, natural_skew),
+                         randint(-initial_offset, initial_offset))
         self.uid = uuid1()
-        Clock.__init__(self)
         self.position = position
         self.transmission_range = transmission_range
         self.active = True
@@ -61,8 +68,9 @@ class Node(Clock):
         return False
 
 if __name__ == "__main__":
+    pass
     # Test code for class Node
-    exampleNode = Node((0,0), 1)
-    exampleNode.turn_on()
-    exampleNode2 = Node((1,1), 1)
-    print(exampleNode2)
+    #exampleNode = Node((0,0), 1)
+    #exampleNode.turn_on()
+    #exampleNode2 = Node((1,1), 1)
+    #print(exampleNode2)
