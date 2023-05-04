@@ -12,11 +12,11 @@ regex_dictionary = {
     'initial_offset': re.compile(r'initial_offset = (?P<initial_offset>\d+)\s+\# .*\n')
 }
 
-def parse_input(file):
+def parse_input(file) -> dict:
     """
     Parse input file and return it as a set.
     """
-    parsed_data = ["random", (10, 10), 30, 5, 0.0005, 3000]
+    parsed_data = {}
     print(parsed_data)
     # Open the file and read through it line by line
     with open(file, 'r', encoding='utf-8') as file_object:
@@ -27,18 +27,18 @@ def parse_input(file):
                 if found:
                     match key:
                         case 'topology':
-                            parsed_data[0] = found.group(key)
+                            parsed_data[key] = found.group(key)
                         case 'size':
                             dimensions = found.group(key).split('x')
-                            parsed_data[1] = (int(dimensions[0]), int(dimensions[1]))
+                            parsed_data[key] = (int(dimensions[0]), int(dimensions[1]))
                         case 'node_amount':
-                            parsed_data[2] = int(found.group(key))
+                            parsed_data[key] = int(found.group(key))
                         case 'transmission_range':
-                            parsed_data[3] = int(found.group(key))
+                            parsed_data[key] = int(found.group(key))
                         case 'natural_skew':
-                            parsed_data[4] = float(found.group(key))
+                            parsed_data[key] = float(found.group(key))
                         case 'initial_offset':
-                            parsed_data[5] = int(found.group(key))
+                            parsed_data[key] = int(found.group(key))
                         case _:
                             pass
 
