@@ -11,14 +11,13 @@ if __name__ == "__main__":
     input_data = parse_input("test.txt")
     simulation = WirelessSensorNetwork(input_data)
     # System time should be in milliseconds.
-    system_time = 0
     initialise_ccs(simulation)
 
     print(f"Mean internal error {simulation.mean_internal_error()}, \
           average time {simulation.average_time()}")
     for node in simulation.network:
         print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time}")
-    
+
     simulation.pass_time(600000)
     print(f"Mean internal error {simulation.mean_internal_error()}, \
           average time {simulation.average_time()}")
