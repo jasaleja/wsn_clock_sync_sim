@@ -57,11 +57,12 @@ def _skew_compensation(receiver: Node, old_time: float) -> None:
 
 if __name__ == "__main__":
     # Test code for module ccs
-    test = WirelessSensorNetwork((2, 2), 4, 3)
-    initialise_ccs(test)
-    test.network[0].time = 1
-    test.network[1].time = 2
-    test.network[2].time = 4
-    test.network[3].time = 5
-    concensus_clock_synhronization(test)
-    print(f"Average time: {test.average_time()}\n")
+    pass
+    # test = WirelessSensorNetwork((2, 2), 4, 3)
+    # initialise_ccs(test)
+    # test.network[0].time = 1
+    # test.network[1].time = 2
+    # test.network[2].time = 4
+    # test.network[3].time = 5
+    # concensus_clock_synhronization(test)
+    # print(f"Average time: {test.average_time()}\n")
