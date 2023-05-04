@@ -1,16 +1,19 @@
-from matplotlib import pyplot
+"""
+Module for simulation of consensus clock synhronization inside a wireless
+sensor network. The simulation is meant to work in milliseconds.
+"""
+from sim_input import parse_input
 from wsn import WirelessSensorNetwork
 from ccs import initialise_ccs
 from ccs import concensus_clock_synhronization
 
 if __name__ == "__main__":
-    #topology, size, trasmission_range, natural_skew, initial_offset = input_setup("test.txt")
-    simulation = WirelessSensorNetwork((10,10), 100, 3)
+    input_data = parse_input("test.txt")
+    simulation = WirelessSensorNetwork(input_data)
+    # System time should be in milliseconds.
     system_time = 0
-    #simulation = WirelessSensorNetwork((2,2), 4)
     initialise_ccs(simulation)
 
-    simulation.init_clocks()
     print(f"Mean internal error {simulation.mean_internal_error()}, \
           average time {simulation.average_time()}")
     for node in simulation.network:
