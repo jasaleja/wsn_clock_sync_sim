@@ -10,21 +10,38 @@ class WirelessSensorNetwork:
     for various setups and calculations inside the network.
     """
     def __init__(self, input_data: dict) -> None:
+        self.size = input_data['size']
+        self.network = []
         match input_data['topology']:
             case 'random':
-                self.size = input_data['size']
                 self.node_amount = input_data['node_amount']
                 node_positions = self._generate_positions()
-                self.network = []
                 for position in node_positions:
                     self.network.append(Node(position,
                                              input_data['transmission_range'],
                                              input_data['natural_skew'],
                                              input_data['initial_offset']))
             case 'full':
-                pass
+                self.node_amount = self.size[0] * self.size[1]
+                for y_coordinate in range(self.size[1]):
+                    for x_coordinate in range(self.size[0]):
+                        self.network.append(Node((x_coordinate, y_coordinate),
+                                                 input_data['transmission_range'],
+                                                 input_data['natural_skew'],
+                                                 input_data['initial_offset']))
             case 'chessboard':
-                pass
+                self.node_amount = 0
+                for y_coordinate in range(self.size[1]):
+                    if y_coordinate%2 == 0:
+                        start_coordinate = 0
+                    else:
+                        start_coordinate = 1
+                    for x_coordinate in range(start_coordinate, self.size[0], 2):
+                        self.network.append(Node((x_coordinate, y_coordinate),
+                                                  input_data['transmission_range'],
+                                                  input_data['natural_skew'],
+                                                  input_data['initial_offset']))
+                        self.node_amount += 1
             case _:
                 pass
 
