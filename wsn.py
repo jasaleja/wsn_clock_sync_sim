@@ -82,7 +82,8 @@ class WirelessSensorNetwork:
 
 if __name__ == "__main__":
     #Test code for class WirelessSensorNetwork
-    wsn = WirelessSensorNetwork((5, 5), 8, 4)
-    print(wsn)
-    wsn.draw_network()
+    pass
+    #wsn = WirelessSensorNetwork((5, 5), 8, 4)
+    #print(wsn)
+    #wsn.draw_network()
     
