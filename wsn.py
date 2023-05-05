@@ -86,14 +86,14 @@ class WirelessSensorNetwork:
         average_network_time = time_sum / self.node_amount
         return average_network_time
 
-    def mean_internal_error(self) -> float:
+    def mean_error(self) -> float:
         """
-        Calculate the average error of all nodes in comparison to average time.
+        Calculate the average absolute error of all nodes in comparison to average time.
         """
         average_network_time = self.average_time()
         error_sum = 0
         for node in self.network:
-            error_sum += average_network_time - node.time
+            error_sum += abs(average_network_time - node.time)
         average_internal_error = error_sum / self.node_amount
         return average_internal_error
 

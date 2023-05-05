@@ -13,26 +13,16 @@ if __name__ == "__main__":
     # System time should be in milliseconds.
     initialise_ccs(simulation)
 
-    print(f"Mean internal error {simulation.mean_internal_error()}, \
-          average time {simulation.average_time()}")
-    for node in simulation.network:
-        print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time}")
-
+    print(f"Mean internal error {simulation.mean_error():4.2f}, \
+          average time {simulation.average_time()/1000:4.2f}")
+#     for node in simulation.network:
+#         print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time/1000:.2f}")
     simulation.pass_time(600000)
-    print(f"Mean internal error {simulation.mean_internal_error()}, \
-          average time {simulation.average_time()}")
-    # while True:
-    #     simulation.pass_time(1)
-    #     x.append(system_time+1)
-    #     y.append(simulation.mean_internal_error())
-    #     if system_time%2 == 0:
-    #         ccs.synchronize(simulation)
-    #     system_time += 1
-    #     if (system_time == 100):
-    #         break
+    print(f"Mean internal error {simulation.mean_error():4.2f}, \
+          average time {simulation.average_time()/1000:4.2f}")
     concensus_clock_synhronization(simulation)
-    print(f"Mean internal error {simulation.mean_internal_error()}, \
-          average time {simulation.average_time()}")
-    for node in simulation.network:
-        print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time}")
+    print(f"Mean internal error {simulation.mean_error():4.2f}, \
+          average time {simulation.average_time()/1000:4.2f}")
+#     for node in simulation.network:
+#         print(f"{node.natural_skew} vs {node.compensation_skew} and {node.time/1000:.2f}")
                 
