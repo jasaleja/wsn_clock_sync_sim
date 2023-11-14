@@ -1,6 +1,6 @@
 topology = full         # full, chessboard, random
-size = 10x10            # grid size of network
-node_amount = 30        # is ignorded if topology is fill or chessboard
+size = 15x15            # grid size of network
+node_amount = 225       # is ignorded if topology is fill or chessboard
 transmission_range = 3  # range of each node
 natural_skew = 0.002    # uniform distribution with mean 1
 initial_offset = 1500   # milliseconds, uniform distribution [-offset, offset]

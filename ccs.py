@@ -1,5 +1,5 @@
 """
-Module for algorithm fro consensus clock synhronization.
+Module for algorithm fro consensus clock synchronization.
 The module must first be initialised.
 """
 from random import shuffle
@@ -16,9 +16,9 @@ def initialise_ccs(simulation: WirelessSensorNetwork) -> None:
         # Set initial synchronization time [0] and confidence factor [1]
         ccs_parameters[node.uid] = [node.time, 1]
 
-def concensus_clock_synhronization(simulation: WirelessSensorNetwork) -> None:
+def consensus_clock_synchronization(simulation: WirelessSensorNetwork) -> None:
     """
-    Perform the consensus clock synhronization algorithm on
+    Perform the consensus clock synchronization algorithm on
     a given network, that was previously initialised.
     """
     # Reset all confidence factors
@@ -64,5 +64,5 @@ if __name__ == "__main__":
     # test.network[1].time = 2
     # test.network[2].time = 4
     # test.network[3].time = 5
-    # concensus_clock_synhronization(test)
+    # concensus_clock_synchronization(test)
     # print(f"Average time: {test.average_time()}\n")
